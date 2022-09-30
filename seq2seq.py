@@ -74,17 +74,17 @@ def train(args):
 
 		tool.trace('epoch:',epoch,'Loss:',sum(Loss)/len(Loss),'Accracy:',sum(Accuracy)/len(Accuracy))
 
-                content_word_test_gen=generate_minibatch(args.content_file_test,args.batch_size)
+		content_word_test_gen=generate_minibatch(args.content_file_test,args.batch_size)
                                       
-                for i,content_words_test in enumerate(content_word_test_gen):
+		for i,content_words_test in enumerate(content_word_test_gen):
 #		for i,content_words in enumerate(gen_data(args.content_file_test,args.batch_size)):
 #			content_words = [[vocab_content.s2i(x) for x in word] for word in content_words]
-                        content_words_test = [[vocab_content.s2i(x) for x in word] for word in content_words_test]
-			output = m.generate(args,content_words_test,xp)
+				content_words_test = [[vocab_content.s2i(x) for x in word] for word in content_words_test]
+		output = m.generate(args,content_words_test,xp)
                         
 			#output='  ' + ''.join([vocab_content.i2s(x) for x in m.generate(args,batch_content_test,xp)])
 
-                        print(output)
+		print(output)
                         
 	tool.trace('finished.')
 
@@ -106,7 +106,7 @@ def parse_args():
 	p.add_argument('--vocab',	'-V', 		default=10000,	type=int)
 	p.add_argument('--embed',	'-De', 		default=11, 	type=int)
 #	p.add_argument('--hidden',	'-Dh', 		default=13, 	type=int)
-        p.add_argument('--hidden',      '-Dh',          default=22,     type=int)
+	p.add_argument('--hidden',      '-Dh',          default=22,     type=int)
 
 
 	p.add_argument('--batch_size',	'-bS',	default=20, 	type=int)
@@ -127,5 +127,5 @@ def parse_args():
 if __name__ == '__main__':
 	args = parse_args()
 	print(args)
-        print(chainer.__version__)
+	print(chainer.__version__)
 	train(args)
